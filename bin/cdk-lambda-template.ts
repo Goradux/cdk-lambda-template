@@ -3,8 +3,6 @@ import "source-map-support/register";
 import * as cdk from "aws-cdk-lib";
 import { CdkLambdaTemplateStack } from "../lib/cdk-lambda-template-stack";
 
-const x = 2;
-
 const app = new cdk.App();
 new CdkLambdaTemplateStack(app, "CdkLambdaTemplateStack", {
   /* If you don't specify 'env', this stack will be environment-agnostic.

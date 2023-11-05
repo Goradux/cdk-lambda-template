@@ -15,9 +15,40 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
 1. install CDK CLI: `npm install -g aws-cdk`
 2. init the folder: `cdk init app --language typescript`
-3. remove jest & add native testing - 3
-4. add compile, lint, format - 1 (add lint and format like in the other article, add eslint ignore to jest setup)
+3. remove jest & add native testing - 3 (not needed)
+4. add compile, lint, format - 1 (add lint and format like in the other article, add eslint-ignore to jest config file) DONE!
 5. what else? check how to run lambdas locally? - 5
-6. add bundling (remove ts-node) - step 2
+6. add bundling (remove ts-node) - step 2 TODO (DONE)
 7. get rid of CDK out duplication? - 4
 8. add git hooks - 6
+
+## ESLint, Prettier
+
+This can be copied from the old article. Also add a eslint-ignore to jest config file
+
+## Adding ESBuild
+
+`npm install --save-dev esbuild`
+
+do we even need a watch command for the bin? Only need it for the lambdas code
+
+Copied info:
+AWS CDK supports esbuild for AWS Lambda Functions, but the implementation cannot be used with other Constructs and doesn't expose all of esbuild's API.
+
+`npm install --save-dev aws-lambda`
+
+honestly not necessary to get rid of the ts-node???
+
+so ts-node + inbuilt esbuild to build the whole cdk app? sounds stupid
+
+command hooks: https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_lambda_nodejs-readme.html#command-hooks
+https://github.com/aws/aws-cdk/issues/2869
+
+Option 2:
+
+parse the template file, find the asset name, rebuild the index.js using esbuild, and only then run the SAM invoke
+Example:
+
+`npm run invoke:local SampleFunction`
+
+this command will look for the `SampleFunction` string in the template, fetch the corresponding asset name. Then it will trigger an esbuild command using to save the output into the asset name, and only then will it run the SAM invoke!

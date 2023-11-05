@@ -1,5 +1,6 @@
 {
-  "app": "npx ts-node --prefer-ts-exts bin/cdk-lambda-template.ts",
+  "esbuild-app": "npm run cdk:build && npm run cdk:app",
+  "app": "npm run cdk:clean:windows && npx ts-node --prefer-ts-exts bin/cdk-lambda-template.ts",
   "watch": {
     "include": ["**"],
     "exclude": [
