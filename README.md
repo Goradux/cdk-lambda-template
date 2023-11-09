@@ -52,3 +52,35 @@ Example:
 `npm run invoke:local SampleFunction`
 
 this command will look for the `SampleFunction` string in the template, fetch the corresponding asset name. Then it will trigger an esbuild command using to save the output into the asset name, and only then will it run the SAM invoke!
+
+Using CDK + SAM is trivial with Python, can we get the same workflow in TypeScript?
+
+weird behavior!
+CDK will look for a local devDependencies installation of esbuild. If not found,
+it will try to use Docker!
+so you MUST have esbuild installed really
+
+if you want to match the settings between CDK esbuild and local esbuild:
+https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_lambda_nodejs-readme.html#configuring-esbuild
+
+
+SAM CLI:
+https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/install-sam-cli.html
+
+
+CDK lambda-nodejs module - general readup recommendation
+https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_lambda_nodejs-readme.html
+
+Sending CLI args to the script:
+if I want to add a `npm run lambda:build && npm run lambda:run`
+https://stackoverflow.com/questions/11580961/sending-command-line-arguments-to-npm-script
+
+but this is out of the scope
+
+
+the scope is 
+
+2 articles:
+
+1. Setting up a CDK TypeScript repo for Lambda applications
+2. (NOW) AWS CDK & SAM: Locally testing TypeScript Lambdas
